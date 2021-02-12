@@ -1,6 +1,6 @@
-#REWARDINGSITES
+# REWARDINGSITES
 
-##REWARDINGSITESとは
+## REWARDINGSITESとは
 
 webサイトを評価するまとめサイトです。
 皆さんで、webの質をよくしていきましょう。
