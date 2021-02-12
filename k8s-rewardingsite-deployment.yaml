@@ -1,0 +1,19 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: k8s-rewardingsites-deployment
+spec:
+  selector:
+    matchLabels:
+      app: rewardingsites
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rewardingsites
+    spec:
+      containers:
+      - name: rewardingsites
+        image: outk/rewardingsites:latest
+        ports:
+        - containerPort: 80
