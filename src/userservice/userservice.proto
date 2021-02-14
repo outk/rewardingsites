@@ -4,7 +4,7 @@ package userservice;
 option go_package = "github.com/outk/rewardingsites/userservice";
 
 service UserService {
-    rpc AddUser (AddUserRequest) returns (AddUserResponse) {}
+    rpc AddUser (AddUserRequest) returns (AddUserReply) {}
 }
 
 message User {
@@ -29,6 +29,6 @@ message AddUserRequest {
     User user = 1;
 }
 
-message AddUserResponse {
+message AddUserReply {
     uint32 user_id = 1;
 }
