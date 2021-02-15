@@ -9,5 +9,7 @@ webサイトを評価するまとめサイトです。
 
 下図のようなアーキテクチャの予定です。
 
-![Architecture](./figures/REWARDINGSITE_Archtecture.png "Architecture")
 
+<div align="center">
+    <image src="./figures/REWARDINGSITE_Archtecture.png" title="Architecture" width=80%>
+</div>
