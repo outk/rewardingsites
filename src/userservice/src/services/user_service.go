@@ -1,17 +1,20 @@
 package services
 
 import (
+	"context"
 	"log"
 
 	"github.com/outk/rewardingsites/src/userservice/src/controllers"
 	"github.com/outk/rewardingsites/src/userservice/src/domain"
 	"github.com/outk/rewardingsites/src/userservice/src/infrastructure"
-	pb "github.com/outk/rewardingsites/src/userservice/src/pb/userservice"
+	pb "github.com/outk/rewardingsites/src/userservice/src/pb"
 )
 
-type UserService struct{}
+type UserService struct {
+	pb.UnimplementedUserServiceServer
+}
 
-func (s *UserService) AddUser(req pb.AddUserRequest) (rep pb.AddUserReply) {
+func (s *UserService) AddUser(ctx context.Context, req *pb.AddUserRequest) (rep *pb.AddUserReply, err error) {
 	// TODO: Before add user to database, must check the user is unique.
 	user := domain.User{
 		ID:         req.User.Id,
@@ -30,12 +33,12 @@ func (s *UserService) AddUser(req pb.AddUserRequest) (rep pb.AddUserReply) {
 
 	userController := controllers.NewUserController(infrastructure.NewMongoDBHandler())
 
-	err := userController.AddUser(user)
+	err = userController.AddUser(user)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	return pb.AddUserReply{
+	return &pb.AddUserReply{
 		Successed: true,
-	}
+	}, nil
 }

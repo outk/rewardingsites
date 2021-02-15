@@ -4,10 +4,10 @@ import (
 	"log"
 	"net"
 
-	"github.com/outk/rewardingsites/src/userservice/src/service"
+	"github.com/outk/rewardingsites/src/userservice/src/services"
 	"google.golang.org/grpc"
 
-	pb "github.com/outk/rewardingsites/src/userservice/src/pb/userservice"
+	pb "github.com/outk/rewardingsites/src/userservice/src/pb"
 )
 
 const (
@@ -20,8 +20,7 @@ func main() {
 		log.Fatalln(err)
 	}
 	server := grpc.NewServer()
-	userService := &services.UserService{}
 
-	pb.RegisterUserServiceServer(server, userService)
+	pb.RegisterUserServiceServer(server, &services.UserService{})
 	server.Serve(listenPort)
 }
