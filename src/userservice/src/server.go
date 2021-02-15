@@ -22,5 +22,6 @@ func main() {
 	server := grpc.NewServer()
 
 	pb.RegisterUserServiceServer(server, &services.UserService{})
+	log.Println("gRPC server start!")
 	server.Serve(listenPort)
 }
