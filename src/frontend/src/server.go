@@ -1,23 +1,21 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello, REWARDING SITES!!")
-	return
-}
-
 func main() {
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
-}
+	engine := gin.Default()
 
-func handleRequest(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case "GET":
-		handler(w, r)
+	engine.LoadHTMLGlob("templates/*")
+
+	frontendEngin := engine.Group("/frontend")
+	{
+		v1Engin := frontendEngin.Group("/v1")
+		{
+			v1Engin.GET("/", controllers.handlerHomePage)
+		}
 	}
+
+	engine.Run(":8080")
 }
