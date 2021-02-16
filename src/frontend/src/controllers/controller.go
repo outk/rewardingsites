@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func handlerHomePage(ctx *gin.Context) {
+func HandlerHomePage(ctx *gin.Context) {
 	ctx.HTML(
 		http.StatusOK,
 		"index.html",
